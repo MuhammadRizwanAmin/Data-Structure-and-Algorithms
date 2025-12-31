@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms - DSA Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/header-footer.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="home.html" class="header-logo">
+                    <i class="fas fa-code"></i>
+                    <span>DSA Learning</span>
+                </a>
+                <span class="header-tagline">Master Data Structures & Algorithms</span>
+            </div>
+            <nav class="header-nav">
+                <a href="home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="algorithms.html"><i class="fas fa-sort"></i> Algorithms</a>
+                <a href="data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a>
+                <span id="userName">Welcome, User</span>
+                <button id="logoutBtn" class="nav-btn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header">
+            <h2>Algorithms</h2>
+            <p>Explore and learn various sorting and searching algorithms</p>
+        </div>
+
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Search algorithms...">
+        </div>
+
+        <div class="algorithms-grid" id="algorithmsGrid">
+            <!-- Algorithms will be dynamically loaded -->
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3><i class="fas fa-code"></i> About DSA Learning</h3>
+                    <p>An interactive platform designed to help students learn and understand Data Structures and Algorithms through visualizations and hands-on practice.</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-book"></i> Algorithms</h3>
+                    <ul>
+                        <li><a href="algorithm.html?alg=bubble-sort"><i class="fas fa-sort"></i> Bubble Sort</a></li>
+                        <li><a href="algorithm.html?alg=selection-sort"><i class="fas fa-sort"></i> Selection Sort</a></li>
+                        <li><a href="algorithm.html?alg=insertion-sort"><i class="fas fa-sort"></i> Insertion Sort</a></li>
+                        <li><a href="algorithm.html?alg=linear-search"><i class="fas fa-search"></i> Linear Search</a></li>
+                        <li><a href="algorithm.html?alg=binary-search"><i class="fas fa-search"></i> Binary Search</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul>
+                        <li><a href="home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="algorithms.html"><i class="fas fa-book"></i> Algorithms</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p><i class="fas fa-envelope"></i> support@dsalearning.com</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DSA Learning Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/home.js"></script>
+    <script>
+        // Override home.js to only show algorithms
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            if (!currentUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('userName').textContent = `Welcome, ${currentUser.name}`;
+
+            document.getElementById('logoutBtn').addEventListener('click', () => {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            });
+
+            const algorithms = [
+                {
+                    id: 'bubble-sort',
+                    name: 'Bubble Sort',
+                    description: 'A simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.',
+                    complexity: 'O(n²)',
+                    category: 'Sorting'
+                },
+                {
+                    id: 'selection-sort',
+                    name: 'Selection Sort',
+                    description: 'An in-place comparison sorting algorithm that divides the input list into two parts: sorted and unsorted.',
+                    complexity: 'O(n²)',
+                    category: 'Sorting'
+                },
+                {
+                    id: 'insertion-sort',
+                    name: 'Insertion Sort',
+                    description: 'A simple sorting algorithm that builds the final sorted array one item at a time, similar to how you sort playing cards.',
+                    complexity: 'O(n²)',
+                    category: 'Sorting'
+                },
+                {
+                    id: 'linear-search',
+                    name: 'Linear Search',
+                    description: 'A simple search algorithm that checks each element in the array sequentially until the target element is found or the array ends.',
+                    complexity: 'O(n)',
+                    category: 'Searching'
+                },
+                {
+                    id: 'binary-search',
+                    name: 'Binary Search',
+                    description: 'An efficient search algorithm that works on sorted arrays by repeatedly dividing the search interval in half.',
+                    complexity: 'O(log n)',
+                    category: 'Searching'
+                },
+                {
+                    id: 'linkedlist-insert-end',
+                    name: 'Linked List - Insert at End',
+                    description: 'Add a new node at the end of the linked list by traversing to the last node.',
+                    complexity: 'O(n)',
+                    category: 'Linked List'
+                },
+                {
+                    id: 'linkedlist-insert-start',
+                    name: 'Linked List - Insert at Start',
+                    description: 'Add a new node at the beginning of the linked list by updating the head pointer.',
+                    complexity: 'O(1)',
+                    category: 'Linked List'
+                },
+                {
+                    id: 'linkedlist-insert-position',
+                    name: 'Linked List - Insert at Position',
+                    description: 'Insert a new node at a specific position in the linked list.',
+                    complexity: 'O(n)',
+                    category: 'Linked List'
+                },
+                {
+                    id: 'linkedlist-delete',
+                    name: 'Linked List - Delete Node',
+                    description: 'Delete a node with a given value from the linked list.',
+                    complexity: 'O(n)',
+                    category: 'Linked List'
+                },
+                {
+                    id: 'queue-enqueue',
+                    name: 'Queue - Enqueue',
+                    description: 'Add an element to the rear of the queue following FIFO principle.',
+                    complexity: 'O(1)',
+                    category: 'Queue'
+                },
+                {
+                    id: 'queue-dequeue',
+                    name: 'Queue - Dequeue',
+                    description: 'Remove an element from the front of the queue following FIFO principle.',
+                    complexity: 'O(1)',
+                    category: 'Queue'
+                },
+                {
+                    id: 'queue-front',
+                    name: 'Queue - Front/Peek',
+                    description: 'View the front element of the queue without removing it.',
+                    complexity: 'O(1)',
+                    category: 'Queue'
+                }
+            ];
+
+            const algorithmsGrid = document.getElementById('algorithmsGrid');
+            const searchInput = document.getElementById('searchInput');
+
+            function renderAlgorithms(algorithmsToRender) {
+                if (algorithmsToRender.length === 0) {
+                    algorithmsGrid.innerHTML = '<div class="no-results">No algorithms found matching your search.</div>';
+                    return;
+                }
+
+                algorithmsGrid.innerHTML = algorithmsToRender.map(alg => `
+                    <div class="algorithm-card" onclick="window.location.href='algorithm.html?alg=${alg.id}'">
+                        <h3>${alg.name}</h3>
+                        <p>${alg.description}</p>
+                        <div>
+                            <span class="badge">${alg.complexity}</span>
+                            <span class="badge">${alg.category}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderAlgorithms(algorithms);
+
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const filtered = algorithms.filter(alg => 
+                    alg.name.toLowerCase().includes(searchTerm) ||
+                    alg.description.toLowerCase().includes(searchTerm)
+                );
+                renderAlgorithms(filtered);
+            });
+        });
+    </script>
+</body>
+</html>
+

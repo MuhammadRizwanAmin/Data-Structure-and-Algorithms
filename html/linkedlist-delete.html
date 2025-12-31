@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Node - Linked List - DSA Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/visualize.css">
+    <link rel="stylesheet" href="../css/ds-visualize.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="../home.html" class="header-logo">
+                    <i class="fas fa-code"></i>
+                    <span>DSA Learning</span>
+                </a>
+                <span class="header-tagline">Master Data Structures & Algorithms</span>
+            </div>
+            <nav class="header-nav">
+                <a href="../home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../algorithms.html"><i class="fas fa-sort"></i> Algorithms</a>
+                <a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a>
+                <a href="../algorithm.html?alg=linkedlist-delete" class="nav-btn"><i class="fas fa-arrow-left"></i> Back</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="visualization-header">
+            <h1>Delete Node - Linked List</h1>
+            <p>Visualize how a node with a specific value is deleted from a linked list</p>
+        </div>
+
+        <div class="input-section">
+            <h2>Enter List and Value to Delete</h2>
+            <div class="input-group">
+                <label for="listSize">List Size (max 5):</label>
+                <input type="number" id="listSize" min="1" max="5" value="4" onchange="updateListInputs()">
+            </div>
+            <div class="nodes-input-container" id="listInputsContainer">
+                <!-- List node inputs will be generated here -->
+            </div>
+            <div class="input-group">
+                <label for="deleteValue">Value to Delete:</label>
+                <input type="number" id="deleteValue" value="20">
+            </div>
+            <button id="startBtn" class="btn-primary">Start Visualization</button>
+            <button id="resetBtn" class="btn-secondary">Reset</button>
+        </div>
+
+        <div class="visualization-section">
+            <div class="controls">
+                <button id="prevBtn" class="btn-control" disabled>
+                    <i class="fas fa-step-backward"></i> Previous
+                </button>
+                <button id="pauseBtn" class="btn-control" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="stepBtn" class="btn-control" disabled>
+                    <i class="fas fa-step-forward"></i> Step
+                </button>
+                <button id="playBtn" class="btn-control" disabled>
+                    <i class="fas fa-play"></i> Play
+                </button>
+                <span class="speed-control">
+                    <label>Speed:</label>
+                    <input type="range" id="speedSlider" min="1" max="10" value="5">
+                    <span id="speedValue">5</span>
+                </span>
+            </div>
+            <div class="ds-visualization-wrapper">
+                <div class="linkedlist-visualization" id="linkedListVisualization">
+                    <div class="linkedlist-row">
+                        <div class="head-pointer-container">
+                            <div class="head-label">Head</div>
+                            <div class="head-pointer" id="headPointer"></div>
+                        </div>
+                        <div class="nodes-container" id="nodesContainer">
+                            <!-- Nodes will be dynamically generated here -->
+                        </div>
+                    </div>
+                    <div class="code-explanation" id="codeExplanation" style="margin-top: 2rem; padding: 1rem; background: rgba(45, 45, 45, 0.6); border-radius: 8px; border-left: 4px solid #667eea; text-align: center;">
+                        <p style="margin: 0; color: #d4d4d4; font-size: 1rem;">Click "Start Visualization" to see the algorithm in action!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3><i class="fas fa-code"></i> About DSA Learning</h3>
+                    <p>An interactive platform designed to help students learn and understand Data Structures and Algorithms through visualizations and hands-on practice.</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-project-diagram"></i> Data Structures</h3>
+                    <ul>
+                        <li><a href="../data-structure.html?ds=linkedlist"><i class="fas fa-link"></i> Linked List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul>
+                        <li><a href="../home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p><i class="fas fa-envelope"></i> support@dsalearning.com</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DSA Learning Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/linkedlist-delete.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignUp Page - DSA Learning</title>
+  <link rel="stylesheet" href="css/signup.css">
+  <!-- Font Awesome for Eye Icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-container signup-container">
+      <div class="auth-header">
+        <div class="auth-icon">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <h2>Create Account</h2>
+        <p>Join us and start your learning journey</p>
+      </div>
+
+      <form id="signupForm" class="auth-form">
+        <div class="form-row">
+          <!-- Name -->
+          <div class="input-group">
+            <label for="name">
+              <i class="fas fa-user"></i> Full Name
+            </label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            <small class="error"></small>
+          </div>
+
+          <!-- Email -->
+          <div class="input-group">
+            <label for="email">
+              <i class="fas fa-envelope"></i> Email Address
+            </label>
+            <input type="email" id="email" name="email" placeholder="e.g. example@gmail.com">
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- CNIC -->
+          <div class="input-group">
+            <label for="cnic">
+              <i class="fas fa-id-card"></i> CNIC
+            </label>
+            <input type="text" id="cnic" name="cnic" placeholder="XXXXX-XXXXXXX-X" maxlength="14">
+            <small class="error"></small>
+          </div>
+
+          <!-- Phone Number -->
+          <div class="input-group">
+            <label for="phone">
+              <i class="fas fa-phone"></i> Phone Number
+            </label>
+            <input type="text" id="phone" name="phone" placeholder="0000-0000000" maxlength="12">
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <!-- Date of Birth -->
+        <div class="input-group">
+          <label for="dob">
+            <i class="fas fa-calendar"></i> Date of Birth
+          </label>
+          <input type="date" id="dob" name="dob">
+          <small class="error"></small>
+        </div>
+
+        <div class="form-row">
+          <!-- Password -->
+          <div class="input-group password-group">
+            <label for="password">
+              <i class="fas fa-lock"></i> Password
+            </label>
+            <div class="password-wrapper">
+              <input type="password" id="password" name="password" placeholder="Enter your password">
+              <i class="fa-solid fa-eye" id="togglePassword"></i>
+            </div>
+            <small class="error"></small>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="input-group password-group">
+            <label for="confirmPassword">
+              <i class="fas fa-lock"></i> Confirm Password
+            </label>
+            <div class="password-wrapper">
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Re-enter your password">
+              <i class="fa-solid fa-eye" id="toggleConfirmPassword"></i>
+            </div>
+            <small class="error"></small>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="registerBtn">
+          <span class="spinner"></span>
+          <span class="btn-text">Create Account</span>
+        </button>
+
+        <div class="auth-divider">
+          <span>Already have an account?</span>
+        </div>
+
+        <a href="index.html" class="btn btn-secondary">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </a>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/signup.js"></script>
+</body>
+</html>

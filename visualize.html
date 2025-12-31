@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="visualize.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo"><i class="fas fa-code"></i> DSA Learning</h1>
+            <a href="home.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="visualization-header">
+            <h1 id="algorithmName">Bubble Sort Visualization</h1>
+            <p>Watch how the algorithm works step by step with interactive animations</p>
+        </div>
+
+        <div class="input-section">
+            <h2>Enter Array Details</h2>
+            <div class="input-group">
+                <label for="arraySize">Array Size (max 6):</label>
+                <input type="number" id="arraySize" min="2" max="6" value="5" onchange="updateArrayInputs()">
+            </div>
+            <div class="array-inputs" id="arrayInputs">
+                <!-- Dynamic inputs will be generated here -->
+            </div>
+            <button id="startBtn" class="btn-primary">Start Visualization</button>
+            <button id="resetBtn" class="btn-secondary">Reset</button>
+        </div>
+
+        <div class="visualization-section">
+            <div class="controls">
+                <button id="pauseBtn" class="btn-control" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="stepBtn" class="btn-control" disabled>
+                    <i class="fas fa-step-forward"></i> Step
+                </button>
+                <button id="playBtn" class="btn-control" disabled>
+                    <i class="fas fa-play"></i> Play
+                </button>
+                <span class="speed-control">
+                    <label>Speed:</label>
+                    <input type="range" id="speedSlider" min="1" max="10" value="5">
+                    <span id="speedValue">5</span>
+                </span>
+            </div>
+            <div class="info-panel">
+                <div class="info-item">
+                    <strong>Current Step:</strong> <span id="currentStep">-</span>
+                </div>
+                <div class="info-item">
+                    <strong>Comparisons:</strong> <span id="comparisons">0</span>
+                </div>
+                <div class="info-item">
+                    <strong>Swaps:</strong> <span id="swaps">0</span>
+                </div>
+            </div>
+            <div class="visualization-wrapper">
+                <div class="array-visualization" id="arrayVisualization">
+                    <!-- Array boxes and arrows will be generated here -->
+                </div>
+                <div class="code-panel">
+                    <h3>Algorithm Code</h3>
+                    <div class="code-block">
+                        <pre><code id="algorithmCode">void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap arr[j] and arr[j+1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}</code></pre>
+                    </div>
+                    <div class="code-explanation" id="codeExplanation">
+                        <p>Click "Start Visualization" to see the algorithm in action!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="visualize.js"></script>
+</body>
+</html>
+

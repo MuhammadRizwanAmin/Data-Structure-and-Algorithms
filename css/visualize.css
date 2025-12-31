@@ -1,0 +1,695 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a1a1a;
+    min-height: 100vh;
+    color: #d4d4d4;
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #667eea;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-btn {
+    color: #667eea;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-btn:hover {
+    color: #5568d3;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.visualization-header {
+    text-align: center;
+    color: #d4d4d4;
+    margin-bottom: 2rem;
+}
+
+.visualization-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.visualization-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.input-section {
+    background: #2d2d2d;
+    border-radius: 15px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-section h2 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #d4d4d4;
+    font-weight: 500;
+}
+
+.input-group input[type="number"],
+.input-group input[type="text"] {
+    width: 100%;
+    max-width: 200px;
+    padding: 0.8rem;
+    border: 2px solid #404040;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    background: #1a1a1a;
+    color: #d4d4d4;
+}
+
+.input-group input[type="number"]:focus,
+.input-group input[type="text"]:focus {
+    border-color: #667eea;
+    background: #252525;
+}
+
+.array-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.array-input-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.array-input-item label {
+    font-size: 0.85rem;
+    color: #d4d4d4;
+    margin-bottom: 0.3rem;
+}
+
+.array-input-item input {
+    width: 80px;
+    padding: 0.6rem;
+    border: 2px solid #404040;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+    background: #1a1a1a;
+    color: #d4d4d4;
+}
+
+.array-input-item input:focus {
+    border-color: #667eea;
+    background: #252525;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-right: 1rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #667eea;
+    color: white;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: #5568d3;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-primary:disabled {
+    background-color: #404040;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.btn-secondary {
+    background-color: #404040;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background-color: #505050;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.visualization-section {
+    background: #2d2d2d;
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-control {
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #667eea;
+    background-color: #1a1a1a;
+    color: #667eea;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-control:hover:not(:disabled) {
+    background-color: #667eea;
+    color: white;
+}
+
+.btn-control:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.speed-control label {
+    color: #d4d4d4;
+    font-weight: 500;
+}
+
+.speed-control input[type="range"] {
+    width: 150px;
+}
+
+.speed-control #speedValue {
+    min-width: 30px;
+    color: #667eea;
+    font-weight: 600;
+}
+
+.info-panel {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item {
+    color: #d4d4d4;
+}
+
+.info-item strong {
+    color: #667eea;
+}
+
+.visualization-wrapper {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    gap: 1.5rem;
+}
+
+.array-visualization {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 400px;
+    padding: 2rem;
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.array-element {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.1s linear;
+}
+
+.array-box {
+    /* Width and height will be set dynamically in JS based on array size */
+    min-width: 15px;
+    min-height: 15px;
+    max-width: 60px;
+    max-height: 60px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.1s linear, width 0.3s ease, height 0.3s ease, font-size 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.array-box.comparing {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.array-box.swapping {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+    z-index: 10;
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.5);
+}
+
+.array-box.sorted {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.array-box.checked {
+    background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+    opacity: 0.7;
+}
+
+.array-box.swap-moving {
+    z-index: 10;
+}
+
+.array-index {
+    margin-top: 0.8rem;
+    font-weight: 600;
+    color: #d4d4d4;
+    font-size: 0.9rem;
+}
+
+.arrow {
+    position: absolute;
+    font-size: 1.8rem;
+    font-weight: bold;
+    top: -50px;
+    animation: bounce 0.6s infinite;
+    z-index: 5;
+}
+
+.arrow.i-arrow {
+    color: #ff6b6b;
+}
+
+.arrow.j-arrow {
+    color: #4ecdc4;
+    top: -70px;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Swap animation for left element (j) - goes up, then right, then down */
+.array-element.swap-left {
+    animation: swapLeft 1.2s ease-in-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes swapLeft {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(0, -70px) scale(1.1);
+    }
+    50% {
+        transform: translate(104px, -70px) scale(1.1);
+    }
+    75% {
+        transform: translate(104px, -20px) scale(1.05);
+    }
+    100% {
+        transform: translate(104px, 0) scale(1);
+    }
+}
+
+/* Swap animation for right element (j+1) - goes down, then left, then up */
+.array-element.swap-right {
+    animation: swapRight 1.2s ease-in-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes swapRight {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(0, 70px) scale(1.1);
+    }
+    50% {
+        transform: translate(-104px, 70px) scale(1.1);
+    }
+    75% {
+        transform: translate(-104px, 20px) scale(1.05);
+    }
+    100% {
+        transform: translate(-104px, 0) scale(1);
+    }
+}
+
+/* Selection sort swap - variable distance */
+@keyframes swapLeftSelection {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(0, -70px) scale(1.1);
+    }
+    50% {
+        transform: translate(var(--swap-distance, 104px), -70px) scale(1.1);
+    }
+    75% {
+        transform: translate(var(--swap-distance, 104px), -20px) scale(1.05);
+    }
+    100% {
+        transform: translate(var(--swap-distance, 104px), 0) scale(1);
+    }
+}
+
+@keyframes swapRightSelection {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(0, 70px) scale(1.1);
+    }
+    50% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), 70px) scale(1.1);
+    }
+    75% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), 20px) scale(1.05);
+    }
+    100% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), 0) scale(1);
+    }
+}
+
+/* Selection Sort: i moves up then right to min position */
+.array-element.selection-i-swap {
+    animation: selectionISwap 1.5s ease-in-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes selectionISwap {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(0, -80px) scale(1.15);
+    }
+    66% {
+        transform: translate(var(--swap-distance, 104px), -80px) scale(1.15);
+    }
+    100% {
+        transform: translate(var(--swap-distance, 104px), 0) scale(1);
+    }
+}
+
+/* Selection Sort: min moves down then left to i position */
+.array-element.selection-min-swap {
+    animation: selectionMinSwap 1.5s ease-in-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes selectionMinSwap {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(0, 80px) scale(1.15);
+    }
+    66% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), 80px) scale(1.15);
+    }
+    100% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), 0) scale(1);
+    }
+}
+
+/* Reverse animations when i is to the right of min */
+.array-element.selection-i-swap-reverse {
+    animation: selectionISwapReverse 1.5s ease-in-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes selectionISwapReverse {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(0, -80px) scale(1.15);
+    }
+    66% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), -80px) scale(1.15);
+    }
+    100% {
+        transform: translate(calc(-1 * var(--swap-distance, 104px)), 0) scale(1);
+    }
+}
+
+.array-element.selection-min-swap-reverse {
+    animation: selectionMinSwapReverse 1.5s ease-in-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes selectionMinSwapReverse {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(0, 80px) scale(1.15);
+    }
+    66% {
+        transform: translate(var(--swap-distance, 104px), 80px) scale(1.15);
+    }
+    100% {
+        transform: translate(var(--swap-distance, 104px), 0) scale(1);
+    }
+}
+
+/* Insertion Sort: Shift animation */
+.array-element.shift-right {
+    animation: shiftRight 0.8s ease-in-out forwards;
+    z-index: 5;
+    position: relative;
+}
+
+@keyframes shiftRight {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(104px, 0);
+    }
+}
+
+/* Insertion Sort: Key insertion */
+.array-element.insert-key {
+    animation: insertKey 0.6s ease-out forwards;
+    z-index: 10;
+    position: relative;
+}
+
+@keyframes insertKey {
+    0% {
+        transform: scale(0.8) translateY(-20px);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.code-panel {
+    background: #2d2d2d;
+    border-radius: 10px;
+    padding: 1.5rem;
+    color: white;
+    max-height: 600px;
+    overflow-y: auto;
+    width: 100%;
+    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.code-panel h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.code-block {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+}
+
+.code-block code {
+    color: #d4d4d4;
+}
+
+.code-block .keyword {
+    color: #569cd6;
+}
+
+.code-block .string {
+    color: #ce9178;
+}
+
+.code-block .comment {
+    color: #6a9955;
+}
+
+.code-block .function {
+    color: #dcdcaa;
+}
+
+.code-explanation {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #d4d4d4;
+}
+
+.code-explanation p {
+    margin: 0;
+}
+
+.highlight-line {
+    background-color: rgba(102, 126, 234, 0.3);
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+@media (max-width: 1200px) {
+    .visualization-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .array-visualization {
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+    
+    /* Box sizes are now dynamic, but ensure minimum on mobile */
+    .array-box {
+        min-width: 50px;
+        min-height: 50px;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .speed-control {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+

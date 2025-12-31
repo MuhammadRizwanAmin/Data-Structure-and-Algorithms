@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue Enqueue Visualization - DSA Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/visualize.css">
+    <link rel="stylesheet" href="../css/ds-visualize.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="../home.html" class="header-logo">
+                    <i class="fas fa-code"></i>
+                    <span>DSA Learning</span>
+                </a>
+                <span class="header-tagline">Master Data Structures & Algorithms</span>
+            </div>
+            <nav class="header-nav">
+                <a href="../home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../algorithms.html"><i class="fas fa-sort"></i> Algorithms</a>
+                <a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a>
+                <a href="../algorithm.html?alg=queue-enqueue" class="nav-btn"><i class="fas fa-arrow-left"></i> Back</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="visualization-header">
+            <h1>Queue Enqueue Visualization</h1>
+            <p>Watch how elements are added to the rear of the queue</p>
+        </div>
+
+        <div class="input-section">
+            <h2>Enter Queue Details</h2>
+            <div class="input-group">
+                <label for="initialQueue">Initial Queue (comma-separated, max 7 elements):</label>
+                <input type="text" id="initialQueue" placeholder="10, 20, 30" value="10, 20, 30">
+            </div>
+            <div class="input-group">
+                <label for="newValue">Value to Enqueue:</label>
+                <input type="number" id="newValue" placeholder="40" value="40">
+            </div>
+            <button id="startBtn" class="btn-primary">Start Visualization</button>
+            <button id="resetBtn" class="btn-secondary">Reset</button>
+        </div>
+
+        <div class="visualization-section">
+            <div class="controls">
+                <button id="prevBtn" class="btn-control" disabled>
+                    <i class="fas fa-step-backward"></i> Previous
+                </button>
+                <button id="pauseBtn" class="btn-control" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="stepBtn" class="btn-control" disabled>
+                    <i class="fas fa-step-forward"></i> Step
+                </button>
+                <button id="playBtn" class="btn-control" disabled>
+                    <i class="fas fa-play"></i> Play
+                </button>
+                <span class="speed-control">
+                    <label>Speed:</label>
+                    <input type="range" id="speedSlider" min="1" max="10" value="5">
+                    <span id="speedValue">5</span>
+                </span>
+            </div>
+            <div class="queue-visualization-container">
+                <div class="queue-visualization" id="queueVisualization">
+                    <div class="queue-container-wrapper">
+                        <div class="queue-pointers">
+                            <div class="pointer-label-container">
+                                <div class="pointer-label">Front</div>
+                                <div class="pointer-arrow front-arrow" id="frontArrow"></div>
+                            </div>
+                            <div class="pointer-label-container">
+                                <div class="pointer-label">Rear</div>
+                                <div class="pointer-arrow rear-arrow" id="rearArrow"></div>
+                            </div>
+                        </div>
+                        <div class="queue-container" id="queueContainer">
+                            <!-- Queue slots will be generated here -->
+                        </div>
+                        <div class="code-explanation" id="codeExplanation">
+                            <p>Click "Start Visualization" to see the algorithm in action!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3><i class="fas fa-code"></i> About DSA Learning</h3>
+                    <p>An interactive platform designed to help students learn and understand Data Structures and Algorithms through visualizations and hands-on practice.</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-project-diagram"></i> Data Structures</h3>
+                    <ul>
+                        <li><a href="../data-structure.html?ds=linkedlist"><i class="fas fa-link"></i> Linked List</a></li>
+                        <li><a href="../data-structure.html?ds=queue"><i class="fas fa-list"></i> Queue</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul>
+                        <li><a href="../home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p><i class="fas fa-envelope"></i> support@dsalearning.com</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DSA Learning Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/queue-enqueue.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List Visualization - DSA Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/visualize.css">
+    <link rel="stylesheet" href="../css/ds-visualize.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="../home.html" class="header-logo">
+                    <i class="fas fa-code"></i>
+                    <span>DSA Learning</span>
+                </a>
+                <span class="header-tagline">Master Data Structures & Algorithms</span>
+            </div>
+            <nav class="header-nav">
+                <a href="../home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../algorithms.html"><i class="fas fa-sort"></i> Algorithms</a>
+                <a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a>
+                <a href="../data-structure.html?ds=linkedlist" class="nav-btn"><i class="fas fa-arrow-left"></i> Back</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="visualization-header">
+            <h1>Linked List Visualization</h1>
+            <p>Visualize how a linked list stores data with nodes and pointers</p>
+        </div>
+
+        <div class="input-section">
+            <h2>Enter Node Values</h2>
+            <div class="input-group">
+                <label for="nodeCount">Number of Nodes (max 6):</label>
+                <input type="number" id="nodeCount" min="1" max="6" value="6" onchange="updateNodeInputs()">
+            </div>
+            <div class="nodes-input-container" id="nodesInputContainer">
+                <!-- Node inputs will be generated here -->
+            </div>
+            <div class="mode-selection">
+                <label>Visualization Mode:</label>
+                <div class="mode-options">
+                    <label class="mode-option">
+                        <input type="radio" name="visualizationMode" value="step" checked>
+                        <span>Step by Step</span>
+                    </label>
+                    <label class="mode-option">
+                        <input type="radio" name="visualizationMode" value="auto">
+                        <span>Auto Play</span>
+                    </label>
+                </div>
+            </div>
+            <div class="button-group">
+                <button id="addNextBtn" class="btn-primary" style="display: none;">Add Next Node</button>
+                <button id="startBtn" class="btn-primary">Start Visualization</button>
+                <button id="resetBtn" class="btn-secondary">Reset</button>
+            </div>
+        </div>
+
+        <div class="visualization-section">
+            <div class="ds-visualization-wrapper">
+                <div class="linkedlist-visualization" id="linkedListVisualization">
+                    <div class="linkedlist-row">
+                        <div class="head-pointer-container">
+                            <div class="head-label">Head</div>
+                            <div class="head-pointer" id="headPointer"></div>
+                        </div>
+                        <div class="nodes-container" id="nodesContainer">
+                            <!-- Nodes will be dynamically generated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3><i class="fas fa-code"></i> About DSA Learning</h3>
+                    <p>An interactive platform designed to help students learn and understand Data Structures and Algorithms through visualizations and hands-on practice.</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-project-diagram"></i> Data Structures</h3>
+                    <ul>
+                        <li><a href="../data-structure.html?ds=linkedlist"><i class="fas fa-link"></i> Linked List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul>
+                        <li><a href="../home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p><i class="fas fa-envelope"></i> support@dsalearning.com</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DSA Learning Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/linkedlist-visualize.js"></script>
+</body>
+</html>
+
