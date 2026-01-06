@@ -222,6 +222,141 @@ public:
                 description: 'View the front element without removing it'
             }
         ]
+    },
+    'bst': {
+        name: 'Binary Search Tree',
+        code: `struct TreeNode {
+    int data;
+    TreeNode* left;
+    TreeNode* right;
+    
+    TreeNode(int val) {
+        data = val;
+        left = nullptr;
+        right = nullptr;
+    }
+};
+
+class BST {
+private:
+    TreeNode* root;
+    
+    TreeNode* insertHelper(TreeNode* node, int data) {
+        if (node == nullptr) {
+            return new TreeNode(data);
+        }
+        
+        if (data < node->data) {
+            node->left = insertHelper(node->left, data);
+        } else if (data > node->data) {
+            node->right = insertHelper(node->right, data);
+        }
+        
+        return node;
+    }
+    
+    TreeNode* searchHelper(TreeNode* node, int data) {
+        if (node == nullptr || node->data == data) {
+            return node;
+        }
+        
+        if (data < node->data) {
+            return searchHelper(node->left, data);
+        }
+        return searchHelper(node->right, data);
+    }
+    
+public:
+    BST() {
+        root = nullptr;
+    }
+    
+    void insert(int data) {
+        root = insertHelper(root, data);
+    }
+    
+    TreeNode* search(int data) {
+        return searchHelper(root, data);
+    }
+    
+    void inorder(TreeNode* node) {
+        if (node != nullptr) {
+            inorder(node->left);
+            cout << node->data << " ";
+            inorder(node->right);
+        }
+    }
+};`,
+        pros: [
+            'Efficient search, insert, and delete operations (O(log n) average)',
+            'Maintains sorted order automatically',
+            'Flexible size - can grow dynamically',
+            'Supports range queries efficiently',
+            'Foundation for more advanced tree structures',
+            'In-order traversal gives sorted sequence'
+        ],
+        cons: [
+            'Worst case time complexity is O(n) for skewed trees',
+            'No guarantee of balanced tree structure',
+            'Extra memory required for storing pointers',
+            'More complex than arrays for simple operations',
+            'Performance degrades if tree becomes unbalanced'
+        ],
+        examples: [
+            {
+                title: 'Example 1: Basic BST',
+                description: 'A BST with values [50, 30, 70, 20, 40, 60, 80]. Root is 50, left subtree contains values less than 50, right subtree contains values greater than 50.'
+            },
+            {
+                title: 'Example 2: Insert Operation',
+                description: 'To insert 35: Start at root (50), 35 < 50, go left to 30, 35 > 30, go right to 40, 35 < 40, insert as left child of 40.'
+            },
+            {
+                title: 'Example 3: Search Operation',
+                description: 'To search for 60: Start at root (50), 60 > 50, go right to 70, 60 < 70, go left to 60, found!'
+            }
+        ],
+        useCases: [
+            'Database indexing and searching',
+            'Implementing symbol tables',
+            'Expression parsing and evaluation',
+            'Priority queues with dynamic priorities',
+            'Range queries and interval trees',
+            'File system directory structures',
+            'Auto-complete and spell-checking systems'
+        ],
+        algorithms: [
+            {
+                id: 'bst-insert',
+                name: 'Insert',
+                description: 'Insert a new node into the binary search tree maintaining BST property'
+            },
+            {
+                id: 'bst-delete',
+                name: 'Delete',
+                description: 'Delete a node from the binary search tree while maintaining BST property'
+            },
+            {
+                id: 'bst-search',
+                name: 'Search',
+                description: 'Search for a value in the binary search tree'
+            },
+            {
+                id: 'bst-inorder',
+                name: 'Inorder Traversal',
+                description: 'Traverse the tree in left-root-right order (gives sorted sequence)'
+            },
+            {
+                id: 'bst-preorder',
+                name: 'Preorder Traversal',
+                description: 'Traverse the tree in root-left-right order'
+            },
+            {
+                id: 'bst-postorder',
+                name: 'Postorder Traversal',
+                description: 'Traverse the tree in left-right-root order'
+            }
+        ]
     }
 };
 
@@ -243,7 +378,7 @@ window.addEventListener('DOMContentLoaded', () => {
             <div class="header-title-section">
                 <h1>${dataStructure.name}</h1>
             </div>
-            <a href="${dsId === 'linkedlist' ? 'html/linkedlist.html' : 'html/queue.html'}" class="visualize-btn">
+            <a href="${dsId === 'linkedlist' ? 'html/linkedlist.html' : dsId === 'queue' ? 'html/queue.html' : 'html/bst.html'}" class="visualize-btn">
                 <i class="fas fa-eye"></i> Interactive Visualization
             </a>
         </div>

@@ -106,6 +106,48 @@ window.addEventListener('DOMContentLoaded', () => {
             description: 'View the front element of the queue without removing it.',
             complexity: 'O(1)',
             category: 'Queue'
+        },
+        {
+            id: 'bst-insert',
+            name: 'BST - Insert',
+            description: 'Insert a new node into the binary search tree maintaining BST property.',
+            complexity: 'O(log n)',
+            category: 'BST'
+        },
+        {
+            id: 'bst-delete',
+            name: 'BST - Delete',
+            description: 'Delete a node from the binary search tree while maintaining BST property.',
+            complexity: 'O(log n)',
+            category: 'BST'
+        },
+        {
+            id: 'bst-search',
+            name: 'BST - Search',
+            description: 'Search for a value in the binary search tree.',
+            complexity: 'O(log n)',
+            category: 'BST'
+        },
+        {
+            id: 'bst-inorder',
+            name: 'BST - Inorder Traversal',
+            description: 'Traverse the tree in left-root-right order (gives sorted sequence).',
+            complexity: 'O(n)',
+            category: 'BST'
+        },
+        {
+            id: 'bst-preorder',
+            name: 'BST - Preorder Traversal',
+            description: 'Traverse the tree in root-left-right order.',
+            complexity: 'O(n)',
+            category: 'BST'
+        },
+        {
+            id: 'bst-postorder',
+            name: 'BST - Postorder Traversal',
+            description: 'Traverse the tree in left-right-root order.',
+            complexity: 'O(n)',
+            category: 'BST'
         }
     ];
 
@@ -122,6 +164,12 @@ window.addEventListener('DOMContentLoaded', () => {
             name: 'Queue',
             description: 'A linear data structure that follows FIFO (First In First Out) principle, where elements are added at the rear and removed from the front.',
             category: 'Linear'
+        },
+        {
+            id: 'bst',
+            name: 'Binary Search Tree',
+            description: 'A binary tree data structure where each node has at most two children, and values are organized such that left child < parent < right child.',
+            category: 'Tree'
         }
     ];
 

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BST Visualization - DSA Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/visualize.css">
+    <link rel="stylesheet" href="../css/ds-visualize.css">
+    <link rel="stylesheet" href="../css/header-footer.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-left">
+                <a href="../home.html" class="header-logo">
+                    <i class="fas fa-code"></i>
+                    <span>DSA Learning</span>
+                </a>
+                <span class="header-tagline">Master Data Structures & Algorithms</span>
+            </div>
+            <nav class="header-nav">
+                <a href="../home.html"><i class="fas fa-home"></i> Home</a>
+                <a href="../algorithms.html"><i class="fas fa-sort"></i> Algorithms</a>
+                <a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a>
+                <a href="../data-structure.html?ds=bst" class="nav-btn"><i class="fas fa-arrow-left"></i> Back</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="visualization-header">
+            <h1>Binary Search Tree Visualization</h1>
+            <p>Visualize how a Binary Search Tree organizes data with hierarchical structure</p>
+        </div>
+
+        <div class="input-section">
+            <h2>BST Operations</h2>
+            <div class="input-group">
+                <label for="insertValue">Value to Insert:</label>
+                <input type="number" id="insertValue" value="50" placeholder="Enter a number">
+                <small id="maxLimitMessage" class="error-text" style="display: none; color: #fbbf24; margin-top: 0.5rem;">
+                    Maximum number of nodes (10) reached. Please reset to insert more.
+                </small>
+            </div>
+            <div class="button-group">
+                <button id="insertBtn" class="btn-primary">Insert</button>
+                <button id="resetBtn" class="btn-secondary">Reset</button>
+            </div>
+        </div>
+
+        <div class="visualization-section">
+            <div class="ds-visualization-wrapper">
+                <div class="bst-visualization" id="bstVisualization">
+                    <div class="tree-container" id="treeContainer">
+                        <!-- Tree will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-section">
+                    <h3><i class="fas fa-code"></i> About DSA Learning</h3>
+                    <p>An interactive platform designed to help students learn and understand Data Structures and Algorithms through visualizations and hands-on practice.</p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-project-diagram"></i> Data Structures</h3>
+                    <ul>
+                        <li><a href="../data-structure.html?ds=linkedlist"><i class="fas fa-link"></i> Linked List</a></li>
+                        <li><a href="../data-structure.html?ds=queue"><i class="fas fa-list"></i> Queue</a></li>
+                        <li><a href="../data-structure.html?ds=bst"><i class="fas fa-sitemap"></i> Binary Search Tree</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-link"></i> Quick Links</h3>
+                    <ul>
+                        <li><a href="../home.html"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="../data-structures.html"><i class="fas fa-project-diagram"></i> Data Structures</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-envelope"></i> Contact</h3>
+                    <p><i class="fas fa-envelope"></i> support@dsalearning.com</p>
+                    <div class="footer-social">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 DSA Learning Platform. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">About Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/bst-visualize.js"></script>
+</body>
+</html>

@@ -19,7 +19,7 @@ togglePassword.addEventListener("click", () => {
 });
 
 // ✉️ Real-time validation for email
-email.addEventListener("input", () => {
+email.addEventListener("blur", () => {
   const value = email.value.trim();
   if (!value) {
     email.classList.add("error");
@@ -32,6 +32,21 @@ email.addEventListener("input", () => {
   } else {
     email.classList.remove("error");
     emailError.style.display = "none";
+    emailError.textContent = "";
+  }
+});
+
+// Clear error when user starts typing again
+email.addEventListener("input", () => {
+  if (email.classList.contains("error") && email.value.trim() !== "") {
+    // Only clear error if user is typing and field has content
+    // Don't validate while typing, wait for blur
+    const value = email.value.trim();
+    if (validateEmail(value)) {
+      email.classList.remove("error");
+      emailError.style.display = "none";
+      emailError.textContent = "";
+    }
   }
 });
 
@@ -40,6 +55,7 @@ password.addEventListener("input", () => {
   if (password.value.trim() !== "") {
     password.classList.remove("error");
     passError.style.display = "none";
+    passError.textContent = "";
   }
 });
 
@@ -66,7 +82,12 @@ form.addEventListener("submit", (e) => {
   if (password.value.trim() === "") {
     password.classList.add("error");
     passError.style.display = "block";
+    passError.textContent = "Please enter your password.";
     valid = false;
+  } else {
+    password.classList.remove("error");
+    passError.style.display = "none";
+    passError.textContent = "";
   }
 
   if (valid) {
@@ -97,8 +118,11 @@ form.addEventListener("submit", (e) => {
         loginBtn.classList.remove('loading');
         btnText.textContent = 'Login';
         email.classList.add("error");
+        password.classList.add("error");
         emailError.style.display = "block";
         emailError.textContent = "Invalid email or password.";
+        passError.style.display = "block";
+        passError.textContent = "Invalid email or password.";
       }
     }, 800);
   }

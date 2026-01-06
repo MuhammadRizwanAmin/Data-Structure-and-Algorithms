@@ -496,6 +496,233 @@ const algorithms = {
             'Priority-based operations',
             'Preview without removal'
         ]
+    },
+    'bst-insert': {
+        name: 'BST - Insert',
+        complexity: 'O(log n)',
+        code: `TreeNode* insert(TreeNode* root, int data) {
+    if (root == nullptr) {
+        return new TreeNode(data);
+    }
+    
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } else if (data > root->data) {
+        root->right = insert(root->right, data);
+    }
+    
+    return root;
+}`,
+        pros: [
+            'Average time complexity O(log n)',
+            'Maintains BST property automatically',
+            'Simple recursive implementation',
+            'Efficient for balanced trees'
+        ],
+        cons: [
+            'Worst case O(n) for skewed trees',
+            'Requires tree balancing for optimal performance',
+            'Recursive calls use stack space'
+        ],
+        examples: [
+            {
+                title: 'Example: Insert 35',
+                description: 'Start at root (50), 35 < 50 go left to 30, 35 > 30 go right to 40, 35 < 40 insert as left child of 40.'
+            }
+        ],
+        useCases: [
+            'Building BST from unsorted data',
+            'Adding elements to existing BST',
+            'Dynamic data structure maintenance'
+        ]
+    },
+    'bst-delete': {
+        name: 'BST - Delete',
+        complexity: 'O(log n)',
+        code: `TreeNode* deleteNode(TreeNode* root, int data) {
+    if (root == nullptr) return root;
+    
+    if (data < root->data) {
+        root->left = deleteNode(root->left, data);
+    } else if (data > root->data) {
+        root->right = deleteNode(root->right, data);
+    } else {
+        // Node with one or no child
+        if (root->left == nullptr) {
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+        } else if (root->right == nullptr) {
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+        }
+        
+        // Node with two children: get inorder successor
+        TreeNode* temp = minValueNode(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}`,
+        pros: [
+            'Average time complexity O(log n)',
+            'Maintains BST property after deletion',
+            'Handles all three cases (0, 1, 2 children)',
+            'Efficient for balanced trees'
+        ],
+        cons: [
+            'Worst case O(n) for skewed trees',
+            'Complex logic for nodes with two children',
+            'Requires finding inorder successor'
+        ],
+        examples: [
+            {
+                title: 'Example: Delete Node with Two Children',
+                description: 'To delete node 50: Find inorder successor (60), replace 50 with 60, delete original 60 node.'
+            }
+        ],
+        useCases: [
+            'Removing elements from BST',
+            'Maintaining sorted order after deletion',
+            'Dynamic data structure updates'
+        ]
+    },
+    'bst-search': {
+        name: 'BST - Search',
+        complexity: 'O(log n)',
+        code: `TreeNode* search(TreeNode* root, int data) {
+    if (root == nullptr || root->data == data) {
+        return root;
+    }
+    
+    if (data < root->data) {
+        return search(root->left, data);
+    }
+    
+    return search(root->right, data);
+}`,
+        pros: [
+            'Average time complexity O(log n)',
+            'Much faster than linear search',
+            'Simple recursive implementation',
+            'Efficient for balanced trees'
+        ],
+        cons: [
+            'Worst case O(n) for skewed trees',
+            'Requires tree to be a valid BST',
+            'Recursive calls use stack space'
+        ],
+        examples: [
+            {
+                title: 'Example: Search for 60',
+                description: 'Start at root (50), 60 > 50 go right to 70, 60 < 70 go left to 60, found!'
+            }
+        ],
+        useCases: [
+            'Finding elements in sorted data',
+            'Database lookups',
+            'Symbol table implementations'
+        ]
+    },
+    'bst-inorder': {
+        name: 'BST - Inorder Traversal',
+        complexity: 'O(n)',
+        code: `void inorder(TreeNode* root) {
+    if (root != nullptr) {
+        inorder(root->left);   // Visit left subtree
+        cout << root->data << " ";  // Visit root
+        inorder(root->right);  // Visit right subtree
+    }
+}`,
+        pros: [
+            'Produces sorted sequence',
+            'Time complexity O(n)',
+            'Simple recursive implementation',
+            'Useful for printing sorted data'
+        ],
+        cons: [
+            'Requires O(h) stack space',
+            'Not suitable for very large trees',
+            'Recursive approach may cause stack overflow'
+        ],
+        examples: [
+            {
+                title: 'Example: Inorder Traversal',
+                description: 'For BST with root 50, left subtree [20, 30, 40], right subtree [60, 70, 80], inorder gives: 20, 30, 40, 50, 60, 70, 80'
+            }
+        ],
+        useCases: [
+            'Printing BST in sorted order',
+            'Getting sorted sequence from BST',
+            'Validating BST property'
+        ]
+    },
+    'bst-preorder': {
+        name: 'BST - Preorder Traversal',
+        complexity: 'O(n)',
+        code: `void preorder(TreeNode* root) {
+    if (root != nullptr) {
+        cout << root->data << " ";  // Visit root
+        preorder(root->left);   // Visit left subtree
+        preorder(root->right);  // Visit right subtree
+    }
+}`,
+        pros: [
+            'Useful for copying tree structure',
+            'Time complexity O(n)',
+            'Simple recursive implementation',
+            'Can be used to serialize tree'
+        ],
+        cons: [
+            'Requires O(h) stack space',
+            'Does not produce sorted sequence',
+            'Recursive approach may cause stack overflow'
+        ],
+        examples: [
+            {
+                title: 'Example: Preorder Traversal',
+                description: 'For BST with root 50, left subtree [20, 30, 40], right subtree [60, 70, 80], preorder gives: 50, 20, 30, 40, 60, 70, 80'
+            }
+        ],
+        useCases: [
+            'Copying tree structure',
+            'Tree serialization',
+            'Expression tree evaluation'
+        ]
+    },
+    'bst-postorder': {
+        name: 'BST - Postorder Traversal',
+        complexity: 'O(n)',
+        code: `void postorder(TreeNode* root) {
+    if (root != nullptr) {
+        postorder(root->left);   // Visit left subtree
+        postorder(root->right);  // Visit right subtree
+        cout << root->data << " ";  // Visit root
+    }
+}`,
+        pros: [
+            'Useful for deleting tree',
+            'Time complexity O(n)',
+            'Simple recursive implementation',
+            'Can be used in expression evaluation'
+        ],
+        cons: [
+            'Requires O(h) stack space',
+            'Does not produce sorted sequence',
+            'Recursive approach may cause stack overflow'
+        ],
+        examples: [
+            {
+                title: 'Example: Postorder Traversal',
+                description: 'For BST with root 50, left subtree [20, 30, 40], right subtree [60, 70, 80], postorder gives: 20, 30, 40, 60, 70, 80, 50'
+            }
+        ],
+        useCases: [
+            'Deleting entire tree',
+            'Expression tree evaluation',
+            'Calculating tree size'
+        ]
     }
 };
 
@@ -513,7 +740,13 @@ function getVisualizationLink(algorithmId) {
         'linkedlist-delete': 'html/linkedlist-delete.html',
         'queue-enqueue': 'html/queue-enqueue.html',
         'queue-dequeue': 'html/queue-dequeue.html',
-        'queue-front': 'html/queue-front.html'
+        'queue-front': 'html/queue-front.html',
+        'bst-insert': 'html/bst-insert.html',
+        'bst-delete': 'html/bst-delete.html',
+        'bst-search': 'html/bst-search.html',
+        'bst-inorder': 'html/bst-inorder.html',
+        'bst-preorder': 'html/bst-preorder.html',
+        'bst-postorder': 'html/bst-postorder.html'
     };
     
     return linkMap[algorithmId] || 'bubble-sort.html';

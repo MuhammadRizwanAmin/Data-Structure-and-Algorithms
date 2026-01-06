@@ -95,14 +95,122 @@ function validatePassword(password) {
 // ========================
 function showError(field, message) {
   const error = field.parentElement.querySelector(".error");
-  error.textContent = message;
-  field.style.border = "1px solid red";
+  if (error) {
+    error.textContent = message;
+    error.style.display = "block";
+    field.classList.add("error");
+  }
 }
 
 function clearError(field) {
   const error = field.parentElement.querySelector(".error");
-  error.textContent = "";
-  field.style.border = "1px solid #ccc";
+  if (error) {
+    error.textContent = "";
+    error.style.display = "none";
+    field.classList.remove("error");
+  }
+}
+
+// ========================
+// Real-time validation
+// ========================
+Object.keys(fields).forEach(key => {
+  const field = fields[key];
+  if (field) {
+    field.addEventListener("blur", () => {
+      validateField(key);
+    });
+    
+    field.addEventListener("input", () => {
+      if (field.classList.contains("error")) {
+        validateField(key);
+      }
+    });
+  }
+});
+
+function validateField(fieldName) {
+  const field = fields[fieldName];
+  if (!field) return;
+  
+  switch(fieldName) {
+    case 'name':
+      if (!field.value.trim()) {
+        showError(field, "Please enter your name");
+      } else {
+        clearError(field);
+      }
+      break;
+      
+    case 'email':
+      if (!field.value.trim()) {
+        showError(field, "Please enter your email address");
+      } else if (!validateEmail(field.value.trim())) {
+        showError(field, "Invalid email address");
+      } else {
+        clearError(field);
+      }
+      break;
+      
+    case 'cnic':
+      if (!field.value.trim()) {
+        showError(field, "Please enter your CNIC");
+      } else if (!validateCNIC(field.value.trim())) {
+        showError(field, "CNIC must be XXXXX-XXXXXXX-X");
+      } else {
+        clearError(field);
+      }
+      break;
+      
+    case 'phone':
+      if (!field.value.trim()) {
+        showError(field, "Please enter your phone number");
+      } else if (!validatePhone(field.value.trim())) {
+        showError(field, "Phone must be 03XX-XXXXXXX");
+      } else {
+        clearError(field);
+      }
+      break;
+      
+    case 'dob':
+      if (!field.value) {
+        showError(field, "Please enter your date of birth");
+      } else {
+        const dobValue = new Date(field.value);
+        const today = new Date();
+        let age = today.getFullYear() - dobValue.getFullYear();
+        const m = today.getMonth() - dobValue.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < dobValue.getDate())) {
+          age--;
+        }
+        if (age < 18) {
+          showError(field, "You must be at least 18 years old");
+        } else {
+          clearError(field);
+        }
+      }
+      break;
+      
+    case 'password':
+      if (!field.value.trim()) {
+        showError(field, "Please enter a password");
+      } else if (!validatePassword(field.value.trim())) {
+        showError(field, "Password must be at least 8 characters with uppercase, lowercase, and number");
+      } else {
+        clearError(field);
+      }
+      break;
+      
+    case 'confirmPassword':
+      if (!field.value.trim()) {
+        showError(field, "Please confirm your password");
+      } else if (field.value !== fields.password.value) {
+        showError(field, "Passwords do not match");
+      } else {
+        clearError(field);
+      }
+      break;
+  }
 }
 
 // ========================
@@ -116,17 +224,26 @@ function validateAll() {
     valid = false;
   } else clearError(fields.name);
 
-  if (!validateEmail(fields.email.value.trim())) {
+  if (!fields.email.value.trim()) {
+    showError(fields.email, "Please enter your email address");
+    valid = false;
+  } else if (!validateEmail(fields.email.value.trim())) {
     showError(fields.email, "Invalid email address");
     valid = false;
   } else clearError(fields.email);
 
-  if (!validateCNIC(fields.cnic.value.trim())) {
+  if (!fields.cnic.value.trim()) {
+    showError(fields.cnic, "Please enter your CNIC");
+    valid = false;
+  } else if (!validateCNIC(fields.cnic.value.trim())) {
     showError(fields.cnic, "CNIC must be XXXXX-XXXXXXX-X");
     valid = false;
   } else clearError(fields.cnic);
 
-  if (!validatePhone(fields.phone.value.trim())) {
+  if (!fields.phone.value.trim()) {
+    showError(fields.phone, "Please enter your phone number");
+    valid = false;
+  } else if (!validatePhone(fields.phone.value.trim())) {
     showError(fields.phone, "Phone must be 03XX-XXXXXXX");
     valid = false;
   } else clearError(fields.phone);
@@ -139,17 +256,26 @@ function validateAll() {
     age--;
   }
 
-  if (!fields.dob.value || age < 18) {
+  if (!fields.dob.value) {
+    showError(fields.dob, "Please enter your date of birth");
+    valid = false;
+  } else if (age < 18) {
     showError(fields.dob, "You must be at least 18 years old");
     valid = false;
   } else clearError(fields.dob);
 
-  if (!validatePassword(fields.password.value.trim())) {
-    showError(fields.password, "Password must be strong");
+  if (!fields.password.value.trim()) {
+    showError(fields.password, "Please enter a password");
+    valid = false;
+  } else if (!validatePassword(fields.password.value.trim())) {
+    showError(fields.password, "Password must be at least 8 characters with uppercase, lowercase, and number");
     valid = false;
   } else clearError(fields.password);
 
-  if (fields.password.value !== fields.confirmPassword.value) {
+  if (!fields.confirmPassword.value.trim()) {
+    showError(fields.confirmPassword, "Please confirm your password");
+    valid = false;
+  } else if (fields.password.value !== fields.confirmPassword.value) {
     showError(fields.confirmPassword, "Passwords do not match");
     valid = false;
   } else clearError(fields.confirmPassword);
