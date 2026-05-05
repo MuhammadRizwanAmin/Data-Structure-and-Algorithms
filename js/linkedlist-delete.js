@@ -7,14 +7,18 @@ let currentStepIndex = 0;
 let speed = 5;
 let animationTimeout = null;
 let initialListNodes = [];
+const MAX_NODES = 4;
+const FIXED_INITIAL_NODES = 4;
+
+function getNodeAddress(index) {
+    return `0x${(4096 + (index * 16)).toString(16).toUpperCase()}`;
+}
 
 // Initialize list inputs
 function updateListInputs() {
-    const listSize = parseInt(document.getElementById('listSize').value) || 1;
-    if (listSize < 1) {
-        document.getElementById('listSize').value = 1;
-        return;
-    }
+    const listSizeInput = document.getElementById('listSize');
+    const listSize = FIXED_INITIAL_NODES;
+    listSizeInput.value = FIXED_INITIAL_NODES;
     const container = document.getElementById('listInputsContainer');
     container.innerHTML = '';
     
@@ -86,13 +90,15 @@ function renderLinkedList(nodes, highlightIndex = -1, highlightDelete = -1, show
         
         const pointerDiv = document.createElement('div');
         pointerDiv.className = 'node-pointer';
-        if (index === nodes.length - 1) {
-            pointerDiv.classList.add('null');
-        }
+        pointerDiv.textContent = index === nodes.length - 1 ? 'NULL' : getNodeAddress(index + 1);
         
         nodeBox.appendChild(dataDiv);
         nodeBox.appendChild(pointerDiv);
         nodeWrapper.appendChild(nodeBox);
+        const addressDiv = document.createElement('div');
+        addressDiv.className = 'node-address';
+        addressDiv.textContent = `Addr: ${getNodeAddress(index)}`;
+        nodeWrapper.appendChild(addressDiv);
         container.appendChild(nodeWrapper);
     });
 }
@@ -370,12 +376,13 @@ function startVisualization() {
     if (isVisualizing) return;
     
     // Get list values
-    const listSize = parseInt(document.getElementById('listSize').value) || 1;
+    const listSize = FIXED_INITIAL_NODES;
     listNodes = [];
     for (let i = 0; i < listSize; i++) {
         const value = parseInt(document.getElementById(`listInput${i}`).value) || 0;
         listNodes.push(value);
     }
+    listNodes = listNodes.slice(0, MAX_NODES);
     
     deleteValue = parseInt(document.getElementById('deleteValue').value) || 20;
     
@@ -421,6 +428,8 @@ function reset() {
 
 // Event listeners
 window.addEventListener('DOMContentLoaded', () => {
+    const listSizeInput = document.getElementById('listSize');
+    if (listSizeInput) listSizeInput.disabled = true;
     updateListInputs();
     renderLinkedList(listNodes);
     

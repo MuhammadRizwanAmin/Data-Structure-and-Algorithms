@@ -126,7 +126,7 @@ body {
     color: #d4d4d4 !important;
 }
 
-.input-group input.error {
+.input-group input.input-error {
     border-color: #ef4444;
     background-color: #2a1a1a;
     color: #d4d4d4 !important;
@@ -242,6 +242,18 @@ body {
 .btn-secondary:hover {
     background-color: rgba(102, 126, 234, 0.1);
     transform: translateY(-2px);
+}
+
+.demo-btn {
+    margin-top: 12px;
+}
+
+.demo-help {
+    display: block;
+    text-align: center;
+    margin-top: 8px;
+    color: #999;
+    font-size: 12px;
 }
 
 .btn:disabled {

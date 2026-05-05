@@ -121,27 +121,26 @@
 .node-pointer {
     padding: 0.8rem 0.6rem;
     background: #252525;
-    color: #999;
-    font-size: 0.9rem;
+    color: #8cc9ff;
+    font-size: 0.72rem;
     display: flex;
     align-items: center;
     justify-content: center;
     border-left: 2px solid rgba(102, 126, 234, 0.2);
-    min-width: 45px;
+    min-width: 82px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    letter-spacing: 0.2px;
 }
 
-.node-pointer::after {
-    content: '→';
-    font-size: 1.2rem;
-    color: #667eea;
-    font-weight: bold;
-}
-
-.node-pointer.null::after {
-    content: 'NULL';
-    font-size: 0.75rem;
-    color: #999;
-    font-weight: normal;
+.node-address {
+    margin-top: 0.35rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    background: rgba(26, 26, 26, 0.85);
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    color: #9aa7ff;
+    font-size: 0.7rem;
+    font-family: 'Consolas', 'Courier New', monospace;
 }
 
 .arrow-connector {
@@ -959,8 +958,12 @@
     
     .node-pointer {
         padding: 0.7rem 0.5rem;
-        min-width: 40px;
-        font-size: 0.8rem;
+        min-width: 74px;
+        font-size: 0.65rem;
+    }
+
+    .node-address {
+        font-size: 0.65rem;
     }
     
     .arrow-connector {

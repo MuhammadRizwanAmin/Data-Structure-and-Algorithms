@@ -8,14 +8,18 @@ let currentStepIndex = 0;
 let speed = 5;
 let animationTimeout = null;
 let initialListNodes = [];
+const MAX_NODES = 4;
+const FIXED_INITIAL_NODES = 3;
+
+function getNodeAddress(index) {
+    return `0x${(4096 + (index * 16)).toString(16).toUpperCase()}`;
+}
 
 // Initialize list inputs
 function updateListInputs() {
-    const listSize = parseInt(document.getElementById('listSize').value) || 1;
-    if (listSize < 1) {
-        document.getElementById('listSize').value = 1;
-        return;
-    }
+    const listSizeInput = document.getElementById('listSize');
+    const listSize = FIXED_INITIAL_NODES;
+    listSizeInput.value = FIXED_INITIAL_NODES;
     const container = document.getElementById('listInputsContainer');
     container.innerHTML = '';
     
@@ -48,6 +52,8 @@ function renderLinkedList(nodes, highlightIndex = -1, showTemp = false, tempInde
     
     headPointer.style.width = '50px';
     
+    const hasPendingInsertion = showNewNode && newValue !== null && newPosition >= 0;
+
     nodes.forEach((value, index) => {
         // Add arrow connector (except for first node)
         if (index > 0) {
@@ -81,13 +87,17 @@ function renderLinkedList(nodes, highlightIndex = -1, showTemp = false, tempInde
         
         const pointerDiv = document.createElement('div');
         pointerDiv.className = 'node-pointer';
-        if (index === nodes.length - 1) {
-            pointerDiv.classList.add('null');
-        }
+        const displayIndex = hasPendingInsertion && index >= newPosition ? index + 1 : index;
+        const totalNodes = hasPendingInsertion ? nodes.length + 1 : nodes.length;
+        pointerDiv.textContent = displayIndex === totalNodes - 1 ? 'NULL' : getNodeAddress(displayIndex + 1);
         
         nodeBox.appendChild(dataDiv);
         nodeBox.appendChild(pointerDiv);
         nodeWrapper.appendChild(nodeBox);
+        const addressDiv = document.createElement('div');
+        addressDiv.className = 'node-address';
+        addressDiv.textContent = `Addr: ${getNodeAddress(displayIndex)}`;
+        nodeWrapper.appendChild(addressDiv);
         container.appendChild(nodeWrapper);
     });
     
@@ -114,13 +124,15 @@ function renderLinkedList(nodes, highlightIndex = -1, showTemp = false, tempInde
         
         const pointerDiv = document.createElement('div');
         pointerDiv.className = 'node-pointer';
-        if (newPosition === nodes.length) {
-            pointerDiv.classList.add('null');
-        }
+        pointerDiv.textContent = newPosition === nodes.length ? 'NULL' : getNodeAddress(newPosition);
         
         nodeBox.appendChild(dataDiv);
         nodeBox.appendChild(pointerDiv);
         newNodeWrapper.appendChild(nodeBox);
+        const addressDiv = document.createElement('div');
+        addressDiv.className = 'node-address';
+        addressDiv.textContent = `Addr: ${getNodeAddress(newPosition)}`;
+        newNodeWrapper.appendChild(addressDiv);
         container.appendChild(newNodeWrapper);
     }
 }
@@ -354,12 +366,13 @@ function startVisualization() {
     if (isVisualizing) return;
     
     // Get list values
-    const listSize = parseInt(document.getElementById('listSize').value) || 1;
+    const listSize = FIXED_INITIAL_NODES;
     listNodes = [];
     for (let i = 0; i < listSize; i++) {
         const value = parseInt(document.getElementById(`listInput${i}`).value) || 0;
         listNodes.push(value);
     }
+    listNodes = listNodes.slice(0, MAX_NODES - 1);
     
     newNodeValue = parseInt(document.getElementById('newNodeValue').value) || 25;
     position = parseInt(document.getElementById('position').value) || 0;
@@ -403,6 +416,8 @@ function reset() {
 
 // Event listeners
 window.addEventListener('DOMContentLoaded', () => {
+    const listSizeInput = document.getElementById('listSize');
+    if (listSizeInput) listSizeInput.disabled = true;
     updateListInputs();
     renderLinkedList(listNodes);
     

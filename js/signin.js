@@ -4,11 +4,46 @@ const password = document.getElementById("password");
 const emailError = document.getElementById("userError"); // renamed to make sense
 const passError = document.getElementById("passError");
 const togglePassword = document.getElementById("togglePassword");
+const demoLoginBtn = document.getElementById("demoLoginBtn");
+
+const DEMO_USER = {
+  name: "Demo Student",
+  email: "demo@dsa.com",
+  password: "Demo1234"
+};
+
+function ensureDemoUser() {
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const hasDemo = users.some((u) => String(u.email || "").toLowerCase() === DEMO_USER.email);
+  if (!hasDemo) {
+    users.push({
+      name: DEMO_USER.name,
+      email: DEMO_USER.email,
+      cnic: "00000-0000000-0",
+      phone: "0300-0000000",
+      dob: "2000-01-01",
+      password: DEMO_USER.password
+    });
+    localStorage.setItem("users", JSON.stringify(users));
+  }
+}
 
 // ✅ Email validation function (same as signup)
 function validateEmail(emailValue) {
   const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}(?:\.[a-zA-Z]{2,4})?$/;
   return pattern.test(emailValue);
+}
+
+function markFieldError(field, errorEl, message) {
+  field.classList.add("input-error");
+  errorEl.style.display = "block";
+  errorEl.textContent = message;
+}
+
+function clearFieldError(field, errorEl) {
+  field.classList.remove("input-error");
+  errorEl.style.display = "none";
+  errorEl.textContent = "";
 }
 
 // 👁 Show/hide password
@@ -22,30 +57,22 @@ togglePassword.addEventListener("click", () => {
 email.addEventListener("blur", () => {
   const value = email.value.trim();
   if (!value) {
-    email.classList.add("error");
-    emailError.style.display = "block";
-    emailError.textContent = "Please enter your email address.";
+    markFieldError(email, emailError, "Please enter your email address.");
   } else if (!validateEmail(value)) {
-    email.classList.add("error");
-    emailError.style.display = "block";
-    emailError.textContent = "Please enter a valid email (e.g. example@gmail.com).";
+    markFieldError(email, emailError, "Please enter a valid email (e.g. example@gmail.com).");
   } else {
-    email.classList.remove("error");
-    emailError.style.display = "none";
-    emailError.textContent = "";
+    clearFieldError(email, emailError);
   }
 });
 
 // Clear error when user starts typing again
 email.addEventListener("input", () => {
-  if (email.classList.contains("error") && email.value.trim() !== "") {
+  if (email.classList.contains("input-error") && email.value.trim() !== "") {
     // Only clear error if user is typing and field has content
     // Don't validate while typing, wait for blur
     const value = email.value.trim();
     if (validateEmail(value)) {
-      email.classList.remove("error");
-      emailError.style.display = "none";
-      emailError.textContent = "";
+      clearFieldError(email, emailError);
     }
   }
 });
@@ -53,9 +80,7 @@ email.addEventListener("input", () => {
 // 🔒 Real-time validation for password
 password.addEventListener("input", () => {
   if (password.value.trim() !== "") {
-    password.classList.remove("error");
-    passError.style.display = "none";
-    passError.textContent = "";
+    clearFieldError(password, passError);
   }
 });
 
@@ -67,27 +92,19 @@ form.addEventListener("submit", (e) => {
   // Validate email
   const emailValue = email.value.trim();
   if (!emailValue) {
-    email.classList.add("error");
-    emailError.style.display = "block";
-    emailError.textContent = "Please enter your email address.";
+    markFieldError(email, emailError, "Please enter your email address.");
     valid = false;
   } else if (!validateEmail(emailValue)) {
-    email.classList.add("error");
-    emailError.style.display = "block";
-    emailError.textContent = "Please enter a valid email (e.g. example@gmail.com).";
+    markFieldError(email, emailError, "Please enter a valid email (e.g. example@gmail.com).");
     valid = false;
   }
 
   // Validate password
   if (password.value.trim() === "") {
-    password.classList.add("error");
-    passError.style.display = "block";
-    passError.textContent = "Please enter your password.";
+    markFieldError(password, passError, "Please enter your password.");
     valid = false;
   } else {
-    password.classList.remove("error");
-    passError.style.display = "none";
-    passError.textContent = "";
+    clearFieldError(password, passError);
   }
 
   if (valid) {
@@ -102,7 +119,10 @@ form.addEventListener("submit", (e) => {
     setTimeout(() => {
       // Check user credentials from localStorage
       const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find(u => u.email === emailValue && u.password === password.value);
+      const normalizedEmail = emailValue.toLowerCase();
+      const user = users.find(
+        u => String(u.email || "").toLowerCase() === normalizedEmail && u.password === password.value
+      );
       
       if (user) {
         // Store current user session
@@ -117,13 +137,22 @@ form.addEventListener("submit", (e) => {
         // Remove loading state
         loginBtn.classList.remove('loading');
         btnText.textContent = 'Login';
-        email.classList.add("error");
-        password.classList.add("error");
-        emailError.style.display = "block";
-        emailError.textContent = "Invalid email or password.";
-        passError.style.display = "block";
-        passError.textContent = "Invalid email or password.";
+        markFieldError(email, emailError, "Invalid email or password.");
+        markFieldError(password, passError, "Invalid email or password.");
       }
     }, 800);
   }
 });
+
+if (demoLoginBtn) {
+  demoLoginBtn.addEventListener("click", () => {
+    ensureDemoUser();
+    email.value = DEMO_USER.email;
+    password.value = DEMO_USER.password;
+    clearFieldError(email, emailError);
+    clearFieldError(password, passError);
+    form.requestSubmit();
+  });
+}
+
+ensureDemoUser();

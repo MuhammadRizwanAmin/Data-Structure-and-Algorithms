@@ -98,7 +98,7 @@ function showError(field, message) {
   if (error) {
     error.textContent = message;
     error.style.display = "block";
-    field.classList.add("error");
+    field.classList.add("input-error");
   }
 }
 
@@ -107,7 +107,7 @@ function clearError(field) {
   if (error) {
     error.textContent = "";
     error.style.display = "none";
-    field.classList.remove("error");
+    field.classList.remove("input-error");
   }
 }
 
@@ -122,7 +122,7 @@ Object.keys(fields).forEach(key => {
     });
     
     field.addEventListener("input", () => {
-      if (field.classList.contains("error")) {
+      if (field.classList.contains("input-error")) {
         validateField(key);
       }
     });
@@ -302,7 +302,7 @@ form.addEventListener("submit", function(e) {
       // Store user data in localStorage
       const userData = {
         name: fields.name.value.trim(),
-        email: fields.email.value.trim(),
+        email: fields.email.value.trim().toLowerCase(),
         cnic: fields.cnic.value.trim(),
         phone: fields.phone.value.trim(),
         dob: fields.dob.value,
@@ -311,7 +311,7 @@ form.addEventListener("submit", function(e) {
 
       // Check if email already exists
       const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
-      if (existingUsers.find(u => u.email === userData.email)) {
+      if (existingUsers.find(u => String(u.email || '').toLowerCase() === userData.email)) {
         // Remove loading state
         registerBtn.classList.remove('loading');
         btnText.textContent = 'Register';

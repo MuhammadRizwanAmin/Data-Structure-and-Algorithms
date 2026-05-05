@@ -134,7 +134,7 @@ body {
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
-.input-group input.error {
+.input-group input.input-error {
     border-color: #ef4444;
     background-color: #2a1a1a;
 }

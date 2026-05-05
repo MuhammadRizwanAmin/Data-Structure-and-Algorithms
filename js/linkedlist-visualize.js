@@ -7,6 +7,10 @@ let visualizationMode = 'step'; // 'step' or 'auto'
 let visualizationTimeout = null;
 let currentAnimationPromise = null;
 
+function getNodeAddress(index) {
+    return `0x${(4096 + (index * 16)).toString(16).toUpperCase()}`;
+}
+
 // Initialize node inputs
 function updateNodeInputs() {
     nodeCount = parseInt(document.getElementById('nodeCount').value) || 6;
@@ -163,13 +167,15 @@ function addNodeWithAnimation(value, index) {
         // Pointer part
         const pointerDiv = document.createElement('div');
         pointerDiv.className = 'node-pointer';
-        if (index === nodes.length - 1) {
-            pointerDiv.classList.add('null');
-        }
+        pointerDiv.textContent = index === nodes.length - 1 ? 'NULL' : getNodeAddress(index + 1);
         
         nodeBox.appendChild(dataDiv);
         nodeBox.appendChild(pointerDiv);
         nodeWrapper.appendChild(nodeBox);
+        const addressDiv = document.createElement('div');
+        addressDiv.className = 'node-address';
+        addressDiv.textContent = `Addr: ${getNodeAddress(index)}`;
+        nodeWrapper.appendChild(addressDiv);
         
         // Add arrow connector (except for first node)
         if (index > 0) {
@@ -255,13 +261,15 @@ function renderLinkedList() {
         // Pointer part
         const pointerDiv = document.createElement('div');
         pointerDiv.className = 'node-pointer';
-        if (index === nodes.length - 1) {
-            pointerDiv.classList.add('null');
-        }
+        pointerDiv.textContent = index === nodes.length - 1 ? 'NULL' : getNodeAddress(index + 1);
 
         nodeBox.appendChild(dataDiv);
         nodeBox.appendChild(pointerDiv);
         nodeWrapper.appendChild(nodeBox);
+        const addressDiv = document.createElement('div');
+        addressDiv.className = 'node-address';
+        addressDiv.textContent = `Addr: ${getNodeAddress(index)}`;
+        nodeWrapper.appendChild(addressDiv);
         container.appendChild(nodeWrapper);
     });
 }
